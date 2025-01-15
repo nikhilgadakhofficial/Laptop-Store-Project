@@ -1,0 +1,61 @@
+.rew-con{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card-rew{
+  height: 500px;
+  padding: 20px;
+  width: 700px ;
+}
+.rew-img{
+  display: block;
+  margin: 0px auto;
+height: 400px;
+}
+
+
+
+h1 {
+   text-align: center;
+   color: #a8a8a8;
+ text-shadow : 1px 1px 0 rgba(white, 1);
+}
+
+.cf {
+   max-width: 600px;
+   text-align: center;
+   margin: 20px auto;
+   box-shadow :0 1px 1px rgba(black, 0.1);
+
+}
+
+
+.half {
+  float: left;
+  width: 48%;
+  margin-bottom: 1em;
+  box-shadow :(0 1px 1px rgba(black, 0.1));
+}
+
+
+@media (max-width: 480px) {
+  .half {
+     width: 100%; 
+     float: none;
+     margin-bottom: 0; 
+  }
+}
+
+
+/* Clearfix */
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
