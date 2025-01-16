@@ -3,6 +3,7 @@ import { useState,useEffect } from 'react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import './Home.css'
+import { useNavigate } from 'react-router-dom';
 import Product from '../../components/Product/Product';
 import Header from '../../components/Header/Header';
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -11,12 +12,12 @@ function Home() {
 
   const [featureProduct,setFeatureProduct ] = useState([]);
   const [filterProduct,setFilterProduct] = useState([])
-
+  const navigate = useNavigate();
     const token = localStorage.getItem("token");
 
   if (!token) {
     toast.error("Please login first");
-   // window.location.href = "/login";
+    navigate('/login')
     return;
   }
 
