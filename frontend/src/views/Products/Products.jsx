@@ -9,16 +9,17 @@ const apiUrl = import.meta.env.VITE_API_URL;
 function Products() {
 
     const [products,setProducts] = useState([])
-  const navigate = useNavigate();
+     const navigate = useNavigate();
     
   
     const loadProducts = async ()=>{
+
       const token = localStorage.getItem('token');
 
       if (!token) {
         toast.error('Please login first');
         navigate('/login');
-        return;
+    
       }
     
         const response = await axios.get(`${apiUrl}/api/product/products`,{

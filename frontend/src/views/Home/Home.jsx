@@ -19,19 +19,23 @@ function Home() {
   const loadProducts = async ()=>{
 
     const token = localStorage.getItem("token");
+
     if (!token) {
       toast.error("Please login first");
       navigate('/login');
       return;
     }
-
-    const response = await axios.get(`${apiUrl}/api/product/products`,{
+    else{
+      const response = await axios.get(`${apiUrl}/api/product/products`,{
         headers: {
             'Authorization': `Bearer ${token}`,
           },
     });
 
     setFilterProduct(response.data.data);
+    }
+
+    
 
 
 }

@@ -7,6 +7,7 @@ import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import Stars from '../../components/Stars/Stars';
 import { useNavigate } from 'react-router-dom';
+import Header from '../../components/Header/Header';
 const apiUrl = import.meta.env.VITE_API_URL;
 function SingleProduct() {
 
@@ -107,12 +108,14 @@ else{
             </div>
             <hr/>
            <NavLink to={`/order/${product._id}`}>
-           <button className='btn'>Order Now</button>
+           <button className='btn2'>Order Now</button>
            </NavLink>
           </div>
         </div>
         
       </div>
+
+      <Header/>
    </>
   )
 }

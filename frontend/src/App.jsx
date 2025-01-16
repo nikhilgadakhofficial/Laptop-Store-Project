@@ -31,7 +31,7 @@ function App() {
             <Route path="/order/:id" element={<OrderNow />} />  
            
             <Route path="/reviews" element={<Reviews />} />
-            
+           
           </Routes>
       
     </>
