@@ -17,8 +17,7 @@ function Home() {
 
   if (!token) {
     toast.error("Please login first");
-    navigate('/login')
-    return;
+    navigate('/login');
   }
 
    
