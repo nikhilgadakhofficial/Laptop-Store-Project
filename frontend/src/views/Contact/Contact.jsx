@@ -16,14 +16,14 @@ function Contact() {
  const [mobileNo,setMobileNo] = useState('');
  const [message,setMessage] = useState('');
 
-useEffect(()=>{
+
   const token = localStorage.getItem("token");
   if (!token) {
     toast.error("Please login first");
     navigate('/login');
     return;
   }
-},[])
+
 
 
  

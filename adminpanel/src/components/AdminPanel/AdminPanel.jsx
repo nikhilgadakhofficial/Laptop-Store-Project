@@ -68,6 +68,15 @@ function AdminPanel() {
                <img src={order_icon} alt="" />
                <p>Orders</p>
              </NavLink>
+             <NavLink to="/alluser" className="sidebar-option">
+               <img src={order_icon} alt="" />
+               <p>All Users</p>
+             </NavLink>
+             <NavLink to="/allcontact" className="sidebar-option">
+               <img src={order_icon} alt="" />
+               <p>All Contact </p>
+             </NavLink>
+  
            </div>
          </div>
    </>

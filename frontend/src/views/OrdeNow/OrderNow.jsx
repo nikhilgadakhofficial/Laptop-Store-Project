@@ -105,6 +105,8 @@ function OrderNow() {
         Authorization: `Bearer ${token}`,
       },
     }
+
+    
    );
 
    
@@ -114,11 +116,12 @@ function OrderNow() {
 
    if (response.data.success) {
      toast.success(response.data.message);
+     navigate('/reviews');
    }
    else{
     toast.error(response.data.message)
    }
-
+   
  }
 
 

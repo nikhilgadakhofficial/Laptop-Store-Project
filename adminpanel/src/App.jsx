@@ -7,6 +7,8 @@ import AdminPanel from '././components/AdminPanel/AdminPanel'
 import UpdateProduct from '././views/UpdateProduct/UpdateProduct'
 import { Toaster } from "react-hot-toast";
 import OrderProduct from "./views/OrderProduct/OrderProduct";
+import AllUser from './views/AllUser/AllUser';
+import AllConatUser from './views/AllConatUser/AllConatUser';
 
 function App() {
   
@@ -22,7 +24,9 @@ function App() {
           <Route path='/addproduct' element={<AddProduct />} />
         <Route path='/listproduct' element={<ListProduct />} />
         <Route path='/orderprduct' element={<OrderProduct />} />
-        <Route path="/update/:id" element={<UpdateProduct/>}/>
+       <Route path="/update/:id" element={<UpdateProduct/>}/>
+       <Route path="/alluser" element={<AllUser/>}/>
+       <Route path="/allcontact" element={<AllConatUser/>}/>
         </Routes>
       </div>
     </div>
@@ -31,3 +35,4 @@ function App() {
 }
 
 export default App
+ 
