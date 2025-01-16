@@ -16,7 +16,7 @@ function Home() {
 
   if (!token) {
     toast.error("Please login first");
-    window.location.href = "/login";
+   // window.location.href = "/login";
     return;
   }
 
