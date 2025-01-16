@@ -5,6 +5,7 @@ import { useState,useEffect } from "react";
 import axios  from 'axios'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom';
+import Header from "../../components/Header/Header";
 const apiUrl = import.meta.env.VITE_API_URL;
 
 function OrderNow() {
@@ -78,7 +79,13 @@ function OrderNow() {
   };
 
  const orderProduct = async ()=>{
-  
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    toast.error('Please login first');
+    navigate('/login');
+    return;
+  }
    const response = await axios.post(`${apiUrl}/api/orders/order`,
     {
       fullName ,
@@ -235,7 +242,7 @@ function OrderNow() {
           </div>
         </div>
       </div>
-      <h1>jofif</h1>
+    <Header/>
     </>
   );
 }

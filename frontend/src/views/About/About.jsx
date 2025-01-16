@@ -13,38 +13,36 @@ function About() {
   const [review , setReviews] = useState([])
  const navigate = useNavigate();
 
+
   const getreviews = async ()=>{
 
     const token = localStorage.getItem("token");
+
     if (!token) {
       toast.error("Please login first");
       navigate('/login');
       return;
     }
-
-    const response = await axios.get(`${apiUrl}/api/reviews/getreviews`,
-    {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
+    else{
+      const response = await axios.get(`${apiUrl}/api/reviews/getreviews`,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        }
+      );
+    
+    
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setReviews(response.data.data)
+      }
+      else{
+       toast.error(response.data.message)
+      }
+    
     }
-  )
 
-  if (response.data.success) {
-    toast.success(response.data.message);
-    setReviews(response.data.data)
-  }
-  else{
-   toast.error(response.data.message)
-  }
-
-  setEmail('')
-  setFullName('')
-  setMessage('')
-  setMobileNo('')
-  setPorfileImageUrl('')
-  
-  navigate('/about');
   }
 
 

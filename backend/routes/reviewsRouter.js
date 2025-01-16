@@ -7,7 +7,7 @@ const verifyToken = require('./../middleware/verifyToken');
 const authorzeRoles = require('./../middleware/authorzeRoles');
 
 
-router.get("/getreviews",verifyToken , authorzeRoles("ADMIN"), getReviews);
+router.get("/getreviews",verifyToken , authorzeRoles("ADMIN","USER"), getReviews);
 router.post('/postreviews',  verifyToken , authorzeRoles("ADMIN","USER"), postReviews);
 
 module.exports = router
