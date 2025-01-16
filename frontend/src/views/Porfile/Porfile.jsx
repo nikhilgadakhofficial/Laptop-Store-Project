@@ -2,11 +2,11 @@ import React from 'react'
 import axios from 'axios';
 import { useState,useEffect } from 'react';
 import toast from 'react-hot-toast'
-import './PorfileI.css'
+import './Porfile.css'
 import { RiLogoutCircleLine } from "react-icons/ri";
 import Header from '../../components/Header/Header';
 const apiUrl = import.meta.env.VITE_API_URL;
-function PorfileI() {
+function Porfilel() {
 
   const [user,setUser] = useState('');
   const [order,setOrder] = useState([]);
@@ -136,4 +136,4 @@ function PorfileI() {
   )
 }
 
-export default PorfileI
+export default Porfilel

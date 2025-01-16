@@ -51,7 +51,7 @@ function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/porfileI" className="navbar-link cart-trolley--link">
+            <NavLink to="/porfile" className="navbar-link cart-trolley--link">
               <CgProfile  className="cart-trolley" />
             
             </NavLink>

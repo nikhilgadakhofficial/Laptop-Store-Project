@@ -9,9 +9,8 @@ import Products from "./views/Products/Products";
 import SingleProduct from "./views/SingleProduct/SingleProduct";
 import Navbar from "./components/Navbar/Navbar";
 import OrderNow from "./views/OrdeNow/OrderNow";
-import PorfileI from "./views/porfileI/porfileI";
-import OrderList from "./views/OrderList/OrderList";
 import Reviews from "./views/Reviews/Reviews";
+import Porfilel from "./views/Porfile/Porfile";
 
 function App() {
   return (
@@ -25,11 +24,12 @@ function App() {
             <Route path="/singnup" element={<Singnup />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/porfileI" element={<PorfileI />} />
+            <Route path="/porfile" element={<Porfilel />} />
+          
             <Route path="/products" element={<Products />} />
             <Route path="/singleproduct/:id" element={<SingleProduct />} />
             <Route path="/order/:id" element={<OrderNow />} />  
-            <Route path="/listOrder" element={<OrderList />} />
+           
             <Route path="/reviews" element={<Reviews />} />
             
           </Routes>
