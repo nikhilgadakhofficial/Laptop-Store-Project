@@ -15,6 +15,15 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+
+app.get("/health",(req, res) => {
+    res.json({
+        success: true,
+        message: "Server is running",
+        data: null
+    })
+})
+
 app.use("/api/users",userRouter);
 app.use("/api/product",productRouter);
 app.use("/api/addTocart",addToCartRouter);
