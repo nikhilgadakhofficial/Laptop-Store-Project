@@ -5,21 +5,25 @@ import toast from 'react-hot-toast'
 import './Porfile.css'
 import { RiLogoutCircleLine } from "react-icons/ri";
 import Header from '../../components/Header/Header';
+import { useNavigate } from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
 function Porfilel() {
 
   const [user,setUser] = useState('');
   const [order,setOrder] = useState([]);
+  const navigate = useNavigate();
+  
 
-  
-  const token = localStorage.getItem("token");
-  if (!token) {
-    toast.error("Please login first");
-    window.location.href = "/login";
-    return;
-  }
-  
   const getUser = async ()=>{
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      toast.error('Please login first');
+      navigate('/login');
+      return;
+    }
+  
+    
 
     const response  = await  axios.get(`${apiUrl}/api/users/getProfile`,
       {
@@ -44,7 +48,13 @@ function Porfilel() {
 
 
   const loadOrderData = async ()=>{
-
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Please login first");
+      window.location.href = "/login";
+      return;
+    }
+    
     const response = await axios.get(`${apiUrl}/api/orders/userorder`,
       {
         headers: {
@@ -121,7 +131,7 @@ function Porfilel() {
               <p className='p1'>{product.paymenttype}</p>
               <p className='p1'>{product.quantity}</p>
               <p className='p1'>{product.total}</p>
-              <img style={{width : '100px'}}  src={product.product.productImageUrl} alt="" />
+              <img style={{width : '100px'}} className='nn'  src={product.product.productImageUrl} alt="" />
               <p className='p1'>{product.status}</p>
 
         

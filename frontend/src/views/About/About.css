@@ -258,6 +258,16 @@
     .title {
       font-size: 32px;
     }
+    .about-img{
+      display: block;
+      margin: 0px auto;
+    height: 200px;
+  }
+  .card-about{
+    height: 300px;
+    padding: 20px;
+    width: 400px ;
+}
   
     .text-blk.title {
       font-size: 32px;

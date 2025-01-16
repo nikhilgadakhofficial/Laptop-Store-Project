@@ -6,6 +6,7 @@ import axios  from 'axios'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
+
 function OrderNow() {
   const { id } = useParams();
 
@@ -24,14 +25,18 @@ function OrderNow() {
   const [product,setProduct] = useState('');
 
 
-  const token = localStorage.getItem("token");
+
+
+  const loadProduct = async ()=>{
+
+    const token = localStorage.getItem('token');
+
   if (!token) {
-    toast.error("Please login first");
-    window.location.href = "/login";
+    toast.error('Please login first');
+    navigate('/login');
     return;
   }
 
-  const loadProduct = async ()=>{
     
     const response = await axios.get(`${apiUrl}/api/product/product/${id}`,
       {
@@ -49,6 +54,14 @@ function OrderNow() {
   }
 
   const getUser = async () => {
+    const token = localStorage.getItem('token');
+
+  if (!token) {
+    toast.error('Please login first');
+    navigate('/login');
+    return;
+  }
+
     const response = await axios.get(
       `${apiUrl}/api/users/getProfile`,
       {

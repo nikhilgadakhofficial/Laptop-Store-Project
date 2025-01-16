@@ -1,9 +1,58 @@
 import React from 'react'
 import about from '/img/about.png'
 import './About.css'
-import Reviews from '../Reviews/Reviews'
+import { useState,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import toast from "react-hot-toast";
+import axios from 'axios';
+const apiUrl = import.meta.env.VITE_API_URL;
 import Header from '../../components/Header/Header'
+
 function About() {
+
+  const [review , setReviews] = useState([])
+ const navigate = useNavigate();
+
+  const getreviews = async ()=>{
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Please login first");
+      navigate('/login');
+      return;
+    }
+
+    const response = await axios.get(`${apiUrl}/api/reviews/getreviews`,
+    {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    }
+  )
+
+  if (response.data.success) {
+    toast.success(response.data.message);
+    setReviews(response.data.data)
+  }
+  else{
+   toast.error(response.data.message)
+  }
+
+  setEmail('')
+  setFullName('')
+  setMessage('')
+  setMobileNo('')
+  setPorfileImageUrl('')
+  
+  navigate('/about');
+  }
+
+
+  useEffect(()=>{
+    getreviews()
+  },[])
+
+  
   return (
     <>
     <div className='container-about'>
@@ -24,82 +73,32 @@ Shoppers are worried more than ever about sustainability, ethics, culture and th
     <h1>Our Customer Reviews</h1>
 
     
-<div className='swiper-wrapper'>
 
-    
-<div class="responsive-container-block content">
-          <p class="text-blk quotes">
+      <div className='swiper-wrapper'>
+      {
+  review.map((reviews)=>{
+
+    return(
+      <div className="responsive-container-block content">
+          <p className="text-blk quotes">
             “
           </p>
-          <img class="profile-img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/eourInstructors3.svg"/>
-          <p class="text-blk info">
-            Lorem ipsum dolor sit amet
+          <img className="profile-img" src={reviews.porfileImageUrl}/>
+          <p className="text-blk info">
+          {reviews.message}
           </p>
-          <img class="image-block review" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/t82.jpg"/>
-          <p class="text-blk name">
-            Jane Doe
+          <img className="image-block review" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/t82.jpg"/>
+          <p className="text-blk name">
+          {reviews.fullName}
           </p>
-        </div>
-
-        <div class="responsive-container-block content">
-          <p class="text-blk quotes">
-            “
-          </p>
-          <img class="profile-img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/eourInstructors3.svg"/>
-          <p class="text-blk info">
-            Lorem ipsum dolor sit amet
-          </p>
-          <img class="image-block review" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/t82.jpg"/>
-          <p class="text-blk name">
-            Jane Doe
-          </p>
-        </div>
+        </div>  
+    )
+  })
+}
 
 
-        <div class="responsive-container-block content">
-          <p class="text-blk quotes">
-            “
-          </p>
-          <img class="profile-img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/eourInstructors3.svg"/>
-          <p class="text-blk info">
-            Lorem ipsum dolor sit amet
-          </p>
-          <img class="image-block review" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/t82.jpg"/>
-          <p class="text-blk name">
-            Jane Doe
-          </p>
-        </div>
-
-        <div class="responsive-container-block content">
-          <p class="text-blk quotes">
-            “
-          </p>
-          <img class="profile-img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/eourInstructors3.svg"/>
-          <p class="text-blk info">
-            Lorem ipsum dolor sit amet
-          </p>
-          <img class="image-block review" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/t82.jpg"/>
-          <p class="text-blk name">
-            Jane Doe
-          </p>
-        </div>
-
-        <div class="responsive-container-block content">
-          <p class="text-blk quotes">
-            “
-          </p>
-          <img class="profile-img" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/eourInstructors3.svg"/>
-          <p class="text-blk info">
-            Lorem ipsum dolor sit amet
-          </p>
-          <img class="image-block review" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/t82.jpg"/>
-          <p class="text-blk name">
-            Jane Doe
-          </p>
-        </div>
-        
 </div>
-
+ 
     <Header/>
     </>
   )

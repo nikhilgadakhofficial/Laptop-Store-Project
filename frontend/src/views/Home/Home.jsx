@@ -13,15 +13,17 @@ function Home() {
   const [featureProduct,setFeatureProduct ] = useState([]);
   const [filterProduct,setFilterProduct] = useState([])
   const navigate = useNavigate();
-    const token = localStorage.getItem("token");
 
-  if (!token) {
-    toast.error("Please login first");
-    navigate('/login');
-  }
 
    
   const loadProducts = async ()=>{
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Please login first");
+      navigate('/login');
+      return;
+    }
 
     const response = await axios.get(`${apiUrl}/api/product/products`,{
         headers: {

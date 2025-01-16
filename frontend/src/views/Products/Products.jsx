@@ -4,22 +4,23 @@ import './../../components/Product/Product.css'
 import axios from 'axios'
 import toast from "react-hot-toast";
 import { useNavigate } from 'react-router-dom';
+import Header from '../../components/Header/Header';
 const apiUrl = import.meta.env.VITE_API_URL;
 function Products() {
 
     const [products,setProducts] = useState([])
   const navigate = useNavigate();
     
-  const token = localStorage.getItem('token');
-
-  if (!token) {
-    toast.error('Please login first');
-    navigate('/login');
-    return;
-  }
-
+  
     const loadProducts = async ()=>{
+      const token = localStorage.getItem('token');
 
+      if (!token) {
+        toast.error('Please login first');
+        navigate('/login');
+        return;
+      }
+    
         const response = await axios.get(`${apiUrl}/api/product/products`,{
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -51,6 +52,8 @@ if (response.data.success) {
    </div>
 
         </div>
+
+        <Header/>
    </>
   )
 }
