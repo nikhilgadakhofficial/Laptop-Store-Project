@@ -21,22 +21,25 @@ function Products() {
         navigate('/login');
     
       }
-    
+      else{
         const response = await axios.get(`${apiUrl}/api/product/products`,{
-            headers: {
-                'Authorization': `Bearer ${token}`,
-              },
-        });
+          headers: {
+              'Authorization': `Bearer ${token}`,
+            },
+      });
 
-        setProducts(response.data.data);
-    
+      setProducts(response.data.data);
+  
 if (response.data.success) {
-    toast.success(response.data.message);
-  }
-  else{
-    toast.success(response.data.message);
-  }
-    }
+  toast.success(response.data.message);
+}
+else{
+  toast.success(response.data.message);
+}
+
+      }
+    
+         }
 
     useEffect(()=>{
         loadProducts();
