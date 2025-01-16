@@ -51,7 +51,7 @@ function Porfilel() {
     const token = localStorage.getItem("token");
     if (!token) {
       toast.error("Please login first");
-      window.location.href = "/login";
+      navigate("/login");
       return;
     }
     
