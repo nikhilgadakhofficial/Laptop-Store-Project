@@ -28,10 +28,14 @@ function Singnup() {
       window.location.href = "/login";
     }
     else{
-      toast.console.error();
       toast.error(response.data.message);
    
     }
+
+    setEmail('')
+    setFullName('')
+    setMobileNo('')
+    setPassword('')
     
   }
 
