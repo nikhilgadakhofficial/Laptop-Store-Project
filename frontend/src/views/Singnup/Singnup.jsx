@@ -29,7 +29,7 @@ function Singnup() {
     }
     else{
       toast.console.error();
-      (response.data.message);
+      toast(response.data.message);
    
     }
     

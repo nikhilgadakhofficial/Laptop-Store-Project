@@ -34,7 +34,7 @@ app.use("/api/reviews",reviewsRouter)
 
 const PORT = process.env.PORT || 8081 ;
 
-//https://laptop-store-project-tdzp.onrender.com
+
 
 app.listen(PORT,()=>{
     console.log(`Server Is running on port ${PORT}`)  
