@@ -31,7 +31,7 @@ function Login() {
         navigate('/addproduct');
       },3000);
     } else {
-      toast.success(response.data.message);
+      toast.error(response.data.message);
     }
     setEmail('');
     setPassword('');

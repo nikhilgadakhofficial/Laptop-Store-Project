@@ -1,50 +1,66 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+import { useNavigate } from 'react-router-dom';
 import './Singup.css'
 const apiUrl = import.meta.env.VITE_API_URL;
-function Singnup() {
 
+function Singnup() {
+  const navigate = useNavigate();
   const [fullName,setFullName] = useState('');
   const [email,setEmail] = useState('');
   const [mobileNo,setMobileNo] = useState('');
   const [password, setPassword] = useState('');
+  const [porfileImageUrl,setPorfileImageUrl] = useState('')
 
 
-  const singup = async ()=>{
+  const singup = async (e)=>{
 
+    e.preventDefault();
+
+    const formData = new FormData();
+  
+    formData.append('fullName',fullName)
+    formData.append('email', email)
+    formData.append('mobileNo', mobileNo)
+    formData.append('password', password)
+    formData.append('porfileImageUrl', porfileImageUrl)
+
+    toast.loading('Please wait ⏳ 50 seconds for the server to start.');
     const response = await axios.post(`${apiUrl}/api/users/signup`,
-      {
-        fullName,
-        email,
-        mobileNo,
-        password
-      }
+   formData
     );
+  
 
     if (response.data.success) {
+      
+      toast.dismiss();
+      toast.success('Server startd successfully!');
+      
       toast.success(response.data.message);
-      window.location.href = "/login";
+      navigate('/login');
+    } else {
+       toast.error(response.data.message);
     }
-    else{
-      toast.error(response.data.message);
-   
-    }
-
-    setEmail('')
-    setFullName('')
-    setMobileNo('')
-    setPassword('')
     
   }
+  
 
   return (
    <>
-     <div className="container-login">
+     <form onSubmit={singup}  className="container-login">
     <div className="registration form">
       <header>Signup</header>
-      <form>
+      <div>
+
+      <label>Enter the Porfile </label>
+      <input 
+      className='input'
+      type="file" 
+        placeholder="Enter your Full Name "
+        onChange={(e)=>{setPorfileImageUrl(e.target.files[0])}}
+       />
 
         <input type="text" 
         placeholder="Enter your Full Name "
@@ -73,20 +89,20 @@ function Singnup() {
 
        
 
-        <input type="button"
+        <input
+         type="submit"
          className="button"
-         onClick={singup}
          value="Signup"
         />
 
-      </form>
+      </div>
       <div className="signup">
         <span >Already have an account?
         <Link to="/login">  <label >Login</label></Link>
         </span>
       </div>
     </div>
-    </div>
+    </form>
    </>
   )
 }

@@ -23,6 +23,7 @@ const verifyToken = async (req, res, next) => {
     } catch (error) {
       res.status(400).json({
         message: " Token is not valid",
+        success : false
       });
     }
   }else{

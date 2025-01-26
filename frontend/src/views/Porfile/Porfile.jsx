@@ -94,7 +94,7 @@ function Porfilel() {
               </div>
 <hr/>
                 <div className='cont-c'>
-                <img className='por-img2' src={user.porfileImageUrl} />
+                <img className='por-img2' src={`http://localhost:8081/images/${user.porfileImageUrl}`} />
                 <h1 className='h1'> Name : <span className='span'>{user.fullName}</span></h1>
                 <h1 className='h1'> Mobile No : <span  className='span'>{user.mobileNo}</span></h1>
                 <h1 className='h1'> Email : <span  className='span'>{user.email}</span></h1>

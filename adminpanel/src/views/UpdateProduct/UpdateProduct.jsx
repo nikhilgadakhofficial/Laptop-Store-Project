@@ -16,6 +16,7 @@ const [stock,setStock] = useState('');
 const [rating,setRating] = useState('');
 const [price,setPrice] = useState('');
 const navigate = useNavigate();
+
   const token = localStorage.getItem('token');
 
   if (!token) {
@@ -38,7 +39,7 @@ const loadProduct = async (id)=>{
 
 );
 
-console.log(response.data);
+//console.log(response.data);
 
 
   setTitle(response.data.data.title);
@@ -57,17 +58,22 @@ else{
 }
 }
 
-const updateProduct = async ()=>{
+const updateProduct = async (e)=>{
+
+  e.preventDefault();
+
+  const formData = new FormData();
+
+  formData.append('title',title)
+  formData.append('description', description)
+  formData.append('stock', stock)
+
+  formData.append('price', price)
+  formData.append('productImageUrl', productImageUrl);
+
   
 const response = await axios.put(`http://localhost:8081/api/product/product/${id}`,
-  {
-   title,
-   description,
-   price,
-   stock,
-   rating,
-   productImageUrl
-  },
+  formData,
   {
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -76,11 +82,17 @@ const response = await axios.put(`http://localhost:8081/api/product/product/${id
 
 );
 
-toast.success(response.data.message);
+if (response.data.success) {
+  toast.success(response.data.message);
 
 setTimeout(()=>{
   navigate('/listproduct')
 },2000)
+
+} else {
+  toast.error(response.data.message);
+}
+
 
 }
 const {id} = useParams();
@@ -93,16 +105,16 @@ loadProduct(id)
   return (
     <>
     <AdminPanel/>
-    <div className='add'>
+    <form className='add' onSubmit={updateProduct}>
           <div  className="flex-col" >
   
           <div className="add-product-name flex-col">
           <p>Product Url</p>
-              <input  type="text" 
+              <input  type="file" 
               name='name'
                placeholder='Type Here Url'
-               value={productImageUrl}
-               onChange={(e)=>setProductImageUrl(e.target.value)}
+            
+               onChange={(e)=>setProductImageUrl(e.target.files[0])}
                />
               </div>
   
@@ -153,9 +165,9 @@ loadProduct(id)
                        />
                   </div>
               </div>
-              <button type='submit'onClick={updateProduct} className='add-btn'>ADD</button>
+              <button type='submit' className='add-btn'>ADD</button>
           </div>
-      </div>
+      </form>
       </>
   )
 }

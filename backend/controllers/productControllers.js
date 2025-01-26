@@ -1,28 +1,32 @@
 const Product = require('./../models/productModel');
 
 const productPost = async (req,res)=>{
-    const {title,feature,description,productImageUrl,price,stars,stock,category,reviews} = req.body;
+    const {title,feature,description,price,stars,stock,category,reviews} = req.body;
 
     try {
         
-  if (!title || !description || !productImageUrl || !price || !stock ||!category || !reviews || !stars) {
+  if (!title || !description  || !price || !stock ||!category || !reviews || !stars) {
           return res.json({
             success : false,
             message : "All fielde are mandatory"
           })  
         }
 
-        const newData = await Product.create({
+        let image_filename =  `${req.file.filename}`;
+
+        const productData = new Product({
             title,
             description,
-            productImageUrl,
+            productImageUrl : image_filename,
             price,
             stars,
             stock,
             category,
             reviews,
             feature   
-        });
+         });
+
+        const newData = await productData.save()
 
         res.status(200).json({
             success : true,
@@ -97,15 +101,17 @@ const getProductWithId = async (req,res)=>{
 
 const putProduct = async (req,res)=>{
     const {id } = req.params;
-    const {title,description,productImageUrl,price,stars,stock,reviews,category} = req.body;
+    const {title,description,price,stars,stock,reviews,category} = req.body;
 
     try {
+
+        let image_filename =  `${req.file.filename}`;
 
         await Product.updateOne({_id : id},{
             $set : {
                 title,
                 description,
-                productImageUrl,
+                productImageUrl : image_filename,
                 price,
                 stars,
                 stock,
@@ -116,7 +122,7 @@ const putProduct = async (req,res)=>{
 
         return res.json({
             success : true,
-            message: "User Update successfully",
+            message: "Product Update successfully",
           });
         
     } catch (error) {

@@ -82,7 +82,8 @@ else{
         {product.map((product,index)=>{
           return(
             <div key={index} className="list-table-format">
-              <img src={product.productImageUrl} alt="" />
+              <img src={`http://localhost:8081/images/${product.productImageUrl}`} alt="" />
+              
               <p>{product.title}</p>
               <p>{product.price}</p>
               <p>{product.stock}</p>

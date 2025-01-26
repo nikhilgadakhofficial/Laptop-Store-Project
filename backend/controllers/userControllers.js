@@ -9,10 +9,14 @@ const signupPost = async (req,res)=>{
 
     try {
 
+        let image_filename =  `${req.file.filename}`;
+
+
         if (!fullName || !email || !password || !mobileNo ) {
-            return  res.status(400).json({
+            return  res.json({
                 success : false,
                 message : "All fielde are mandatory",
+                data : null
             });
         }
 
@@ -20,7 +24,7 @@ const signupPost = async (req,res)=>{
         const isAvailable = await User.findOne({email : email});
 
         if (isAvailable) {
-            return res.status(400).json({
+            return res.json({
                 success : false,
                 message : "This Email Alrady Taken"
             });
@@ -28,23 +32,35 @@ const signupPost = async (req,res)=>{
 
         const hashPassword = await bcrypt.hash(password, 10);
 
-        const newUser  = await User.create({
+        // const newUser  = await User.create({
+        //     fullName,
+        //     email,
+        //     role,
+        //     mobileNo,
+        //     password : hashPassword,
+        //     porfileImageUrl
+        // });
+
+        const userData = new User({
             fullName,
             email,
             role,
             mobileNo,
             password : hashPassword,
-            porfileImageUrl
+            porfileImageUrl : image_filename
         });
 
-        res.status(200).json({
+
+        const newUser = await userData.save();
+
+      res.json({
             success : true,
             message : "Signup Successful",
             data : newUser
         });
         
     } catch (error) {
-       res.status(400).json({
+       res.json({
         success : false,
         message :error.message,
         data : null

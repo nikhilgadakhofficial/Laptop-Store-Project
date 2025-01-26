@@ -9,16 +9,33 @@ function AddProduct() {
 
 const [title,setTitle] = useState();
 const [description,setDescription] = useState();
-const [productImageUrl,setProductImageUrl] = useState();
+const [productImageUrl,setProductImageUrl] = useState(null);
 const [stock,setStock] = useState();
 const [stars,setStars] = useState();
 const [price,setPrice] = useState();
 const [category,setCategory] = useState();
 const [reviews , setReviews] = useState();
-  const navigate = useNavigate();
+const navigate = useNavigate();
+
+// const [data , setData ] = useState(
+//   {
+//     title : '',
+//     description : '',
+//     stock : '',
+//     stars : '',
+//     price : '',
+//     category : '',
+//     reviews : ''
+//   }
+// )
+
+// const onChangeHandler = (e) =>{
+//   const name = e.target.name;
+//   const value = e.target.value;
+//   setData(data=>({...data,[name]:value}))
+// }
 
 
-  
   const token = localStorage.getItem('token');
 
   if (!token) {
@@ -27,18 +44,24 @@ const [reviews , setReviews] = useState();
   }
 
 
-const addProduct = async ()=>{
+const addProduct = async (e)=>{
 
-  const response  = await axios.post('http://localhost:8081/api/product/product',{
-    title,
-    description,
-    productImageUrl,
-    stock,
-    stars,
-    price,
-    reviews,
-    category
-  },
+  e.preventDefault();
+
+  const formData = new FormData();
+
+  formData.append('title',title)
+  formData.append('description', description)
+  formData.append('stock', stock)
+  formData.append('stars', stars)
+  formData.append('price', price)
+  formData.append('category',category)
+  formData.append('reviews', reviews)
+  formData.append('productImageUrl', productImageUrl);
+
+
+  const response  = await axios.post('http://localhost:8081/api/product/product',
+  formData,
   {
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -59,15 +82,15 @@ else{
     <>
   <AdminPanel/>
   <div className='add'>
-        <div  className="flex-col" >
+        <form onSubmit={addProduct}  className="flex-col" >
 
         <div className="add-product-name flex-col">
         <p>Product Url</p>
-            <input  type="text" 
-            name='name'
+            <input  type="file" 
+       
              placeholder='Type Here Url'
-             value={productImageUrl}
-             onChange={(e)=>setProductImageUrl(e.target.value)}
+         
+             onChange={(e)=>setProductImageUrl(e.target.files[0])}
              />
             </div>
 
@@ -85,7 +108,7 @@ else{
                 <input  type="text"
                placeholder='Type Here' 
                value={category}
-               onChange={(e)=>setCategory(e.target.value)}
+               onChange={(e)=>{setCategory(e.target.value)}}
                />
             </div>
 
@@ -95,7 +118,7 @@ else{
                  rows='6'
                   placeholder='Write content here'
                   value={description}
-                  onChange={(e)=>setDescription(e.target.value)}
+                  onChange={(e)=>{setDescription(e.target.value)}}
                   ></textarea>
             </div>
             
@@ -123,7 +146,7 @@ else{
                      name='price' 
                      placeholder='5.1'
                      value={stars}
-                     onChange={(e)=>setStars(e.target.value)}
+                     onChange={(e)=>{setStars(e.target.value)}}
                      />
 
                     <p>Product Reviews</p>
@@ -135,8 +158,8 @@ else{
                      />
                 </div>
             </div>
-            <button type='submit'onClick={addProduct} className='add-btn'>ADD</button>
-        </div>
+            <button type='submit' className='add-btn'>ADD</button>
+        </form>
     </div>
     </>
   )

@@ -12,7 +12,7 @@ function Product(curElem) {
     <NavLink to={`/singleproduct/${_id}`}>
       <div className="card">
         <figure>
-          <img src={productImageUrl} alt={title} />
+        <img src={`http://localhost:8081/images/${productImageUrl}`} alt={title} />
           <figcaption className="caption">{title}</figcaption>
         </figure>
 
