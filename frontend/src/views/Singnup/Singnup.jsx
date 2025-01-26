@@ -27,15 +27,13 @@ function Singnup() {
     formData.append('password', password)
     formData.append('porfileImageUrl', porfileImageUrl)
 
-    toast.loading('Please wait ⏳ 50 seconds for the server to start.');
     const response = await axios.post(`${apiUrl}/api/users/signup`,
    formData
     );
   
 
     if (response.data.success) {
-      
-      toast.dismiss();
+    
       toast.success('Server startd successfully!');
       
       toast.success(response.data.message);

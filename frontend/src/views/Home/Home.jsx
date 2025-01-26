@@ -102,9 +102,7 @@ useEffect(()=>{
 
 <Header/>
 
-  {
-    //https://www.laptopstoreindia.in/
-  }
+ 
    </>
   )
 }
