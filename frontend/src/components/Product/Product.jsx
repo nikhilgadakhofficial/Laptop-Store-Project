@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import './Product.css'
-
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function Product(curElem) {
 
@@ -12,7 +12,7 @@ function Product(curElem) {
     <NavLink to={`/singleproduct/${_id}`}>
       <div className="card">
         <figure>
-        <img src={`http://localhost:8081/images/${productImageUrl}`} alt={title} />
+        <img src={`${apiUrl}/images/${productImageUrl}`} alt={title} />
           <figcaption className="caption">{title}</figcaption>
         </figure>
 

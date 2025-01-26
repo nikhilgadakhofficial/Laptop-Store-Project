@@ -55,7 +55,7 @@ else{
 
           <div className="product_images">
  
-          <img className='img' src={`http://localhost:8081/images/${product.productImageUrl}`}></img>
+          <img className='img' src={`${apiUrl}/images/${product.productImageUrl}`}></img>
          
           </div>
 
