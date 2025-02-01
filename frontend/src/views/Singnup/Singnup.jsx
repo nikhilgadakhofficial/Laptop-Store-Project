@@ -33,9 +33,7 @@ function Singnup() {
   
 
     if (response.data.success) {
-    
-      toast.success('Server startd successfully!');
-      
+
       toast.success(response.data.message);
       navigate('/login');
     } else {

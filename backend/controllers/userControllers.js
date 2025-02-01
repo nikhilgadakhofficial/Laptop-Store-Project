@@ -5,7 +5,7 @@ const User = require('./../models/userModel');
 
 const signupPost = async (req,res)=>{
  
-    const { fullName , email ,role , password ,mobileNo , porfileImageUrl } = req.body;
+    const { fullName , email ,role , password ,mobileNo } = req.body;
 
     try {
 
