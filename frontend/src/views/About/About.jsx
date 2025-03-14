@@ -81,7 +81,7 @@ Shoppers are worried more than ever about sustainability, ethics, culture and th
           <p className="text-blk quotes">
             “
           </p>
-          <img className="profile-img" src={reviews.porfileImageUrl}/>
+          <img className="profile-img" src={`${apiUrl}/images/${reviews.porfileImageUrl}`}/>
           <p className="text-blk info">
           {reviews.message}
           </p>

@@ -50,7 +50,7 @@ function AdminPanel() {
          
       
          <div className="navbar">
-         <img src={user.porfileImageUrl} alt="" className="profile" />
+         <img src={`http://localhost:8081/images/${user.porfileImageUrl}`} alt="" className="profile" />
          <p className='title'> {user.fullName}...❤</p>
          </div>
     

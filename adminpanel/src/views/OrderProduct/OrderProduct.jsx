@@ -77,13 +77,13 @@ function OrderProduct() {
             return (
               <div key={index} className="list-table-format">
                 <img
-                  src={order.porfileImageUrl}
+                  src={`http://localhost:8081/images/${order.porfileImageUrl}`}
                   style={{ borderRadius: "50%" }}
                   alt=""
                 />
                 <p>{order.fullName}</p>
                 <p>{order.mobileNo}</p>
-                <img src={order.product.productImageUrl} alt="" />
+                <img src={`http://localhost:8081/images/${order.product.productImageUrl}`} alt="" />
                 <p>{order.product.title}</p>
                 <p>{order.quantity}</p>
                 <p>{order.product.price}</p>

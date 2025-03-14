@@ -131,7 +131,7 @@ function Porfilel() {
               <p className='p1'>{product.paymenttype}</p>
               <p className='p1'>{product.quantity}</p>
               <p className='p1'>{product.total}</p>
-              <img style={{width : '100px'}} className='nn'  src={product.product.productImageUrl} alt="" />
+              <img style={{width : '100px'}} className='nn'  src={`${apiUrl}/images/${product.product.productImageUrl}`} alt="" />
               <p className='p1'>{product.status}</p>
 
         

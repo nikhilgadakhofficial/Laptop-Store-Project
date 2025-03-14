@@ -56,7 +56,7 @@ else{
            {users.map((user,index)=>{
              return(
                <div key={index} className="list-table-format">
-                 <img src={user.porfileImageUrl} alt="" />
+                 <img src={`http://localhost:8081/images/${user.porfileImageUrl}`} alt="" />
                  <p>{user.fullName}</p>
                  <p>{user.email}</p>
               

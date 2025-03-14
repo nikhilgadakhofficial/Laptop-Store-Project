@@ -41,12 +41,24 @@ function Home() {
 }
 
 
+// const nk = async ()=>{
+
+//   const dataaa = await axios.get('https://www.thecolorapi.com/scheme?hex=ff5733&mode=monochrome')
+
+//   console.log(dataaa.data.
+//     colors
+//     );
+  
+// }
+
+
 
 //console.log(filterProduct);
 
 
 useEffect(()=>{
   loadProducts()
+  // nk()
 },[])
 
   return (
