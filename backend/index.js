@@ -30,7 +30,7 @@ app.use("/api/product",productRouter);
 app.use("/api/addTocart",addToCartRouter);
 app.use("/api/orders",orderRouter)
 app.use("/api/contact",contactRouter);
-app.use("/api/reviews",reviewsRouter)
+app.use("/api/reviews",reviewsRouter);
 app.use("/images",express.static('uploads'));
 
 const PORT = process.env.PORT || 8081 ;

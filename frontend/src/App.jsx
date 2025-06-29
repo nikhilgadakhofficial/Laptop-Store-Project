@@ -25,13 +25,10 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/porfile" element={<Porfilel />} />
-          
             <Route path="/products" element={<Products />} />
             <Route path="/singleproduct/:id" element={<SingleProduct />} />
             <Route path="/order/:id" element={<OrderNow />} />  
-           
             <Route path="/reviews" element={<Reviews />} />
-           
           </Routes>
       
     </>
